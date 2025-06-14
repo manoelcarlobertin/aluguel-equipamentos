@@ -68,3 +68,5 @@ gem 'simple_form'
 
 # Front-end
 # Usaremos Tailwind via CDN para simplificar (pode evoluir para instalação via npm 10.8.2)
+
+gem "pundit", "~> 2.5"

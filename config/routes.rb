@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :customers
   root "equipaments#index"
 
   get "users/index"
