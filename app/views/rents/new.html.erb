@@ -1,0 +1,13 @@
+<h1>Alugar Equipamento: <%= @equipament.name %></h1>
+
+<%= simple_form_for [@equipament, @rent] do |f| %>
+  <div class="mb-4">
+    <%= f.input :started_at, as: :datetime, label: "Início" , input_html: { class: "border rounded p-2" } %>
+  </div>
+
+  <div class="mb-4">
+    <%= f.input :finished_at, as: :datetime, label: "Término" , input_html: { class: "border rounded p-2" } %>
+  </div>
+
+  <%= f.button :submit, "Alugar" , class: "bg-blue-500 text-white px-4 py-2 rounded" %>
+<% end %>
