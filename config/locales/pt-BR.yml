@@ -1,5 +1,11 @@
 ---
 pt-BR:
+  devise:
+    sessions:
+      signed_in: "Login efetuado com sucesso."
+      signed_out: "Logout efetuado com sucesso."
+    failure:
+      unauthenticated: "Você precisa fazer login para continuar."
   customers:
     notices:
       created: "Cliente criado com sucesso!"
