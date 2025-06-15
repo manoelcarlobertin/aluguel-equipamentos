@@ -1,5 +1,7 @@
-<% @customers.each do |customer| %>
-  <li class="list-group-item" role="option" data-autocomplete-value="<%= customer.id %>">
-    <%= customer.name %>
-  </li>
-<% end %>
+<ul class="bg-white shadow rounded-lg divide-y divide-gray-200">
+  <% @customers.each do |customer| %>
+    <li role="option" data-autocomplete-value="<%= customer.id %>" class="px-4 py-2 hover:bg-gray-50 cursor-pointer">
+      <%= customer.name %>
+    </li>
+  <% end %>
+</ul>

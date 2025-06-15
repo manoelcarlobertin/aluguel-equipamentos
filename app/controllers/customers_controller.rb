@@ -1,20 +1,22 @@
 class CustomersController < ApplicationController
-  before_action :authenticate_user!           # Usa Devise para autenticação
+  before_action :authenticate_user!
   before_action :set_customer, only: %i[show edit update destroy]
 
+  # Pundit callbacks to ensure authorization is performed
+  after_action :verify_authorized, except: :index
+  after_action :verify_policy_scoped, only: :index
+
   def index
-    @customers = Customer.order(:name)
-    authorize Customer
+    @customers = policy_scope(Customer).ordered
   end
 
   def search
-    query = params[:q].to_s.downcase
-    @customers = Customer.where("LOWER(name) LIKE ?", "%#{query}%")
+    query = params[:q].to_s.strip.downcase
+    @customers = policy_scope(Customer).search_by_name(query)
     render layout: false
   end
 
   def show
-    authorize @customer
   end
 
   def new
@@ -27,37 +29,33 @@ class CustomersController < ApplicationController
     authorize @customer
 
     if @customer.save
-      redirect_to customers_path, notice: "Cliente cadastrado com sucesso."
+      redirect_to customers_path, notice: t('customers.notices.created')
     else
       render :new, status: :unprocessable_entity
     end
   end
 
   def edit
-    authorize @customer
   end
 
   def update
-    authorize @customer
-
     if @customer.update(customer_params)
-      redirect_to customer_path(@customer), notice: "Cliente atualizado com sucesso."
+      redirect_to customers_path, notice: t('customers.notices.updated')
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
-    authorize @customer
     @customer.destroy
-    redirect_to customers_path, notice: "Cliente removido com sucesso."
+    redirect_to customers_path, notice: t('customers.notices.destroyed')
   end
 
   private
 
-  # Usar nome padrão 'set_customer' para callbacks é mais comum
   def set_customer
-    @customer = Customer.find(params[:id])
+    @customer = policy_scope(Customer).find(params[:id])
+    authorize @customer
   end
 
   def customer_params

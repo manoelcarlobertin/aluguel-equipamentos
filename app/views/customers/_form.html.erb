@@ -1,21 +1,34 @@
-<div id="kt_content_container" class="container-xxl">
-  <div class="card">
-    <%= simple_form_for @customer do |form| %>
-      <div class="card-body">
-        <div class="row">
-          <div class="col-12 col-md-9">
-            <%= form.input :name %>
-          </div>
-          <div class="col-12 col-md-3">
-            <%= form.input :dob, html5: true %>
-          </div>
+<div class="container mx-auto px-4">
+  <div class="bg-white shadow rounded-lg p-6">
+    <%= simple_form_for @customer, html: { class: "space-y-6" } do |f| %>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="md:col-span-2">
+          <%= f.input :name, label_html: { class: "block text-sm font-medium text-gray-700" }, input_html: {
+            class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+            } %>
         </div>
-        <%= form.input :mobile_phone %>
-          <%= form.input :email %>
+        <div>
+          <%= f.input :dob, as: :date, html5: true, label_html: { class: "block text-sm font-medium text-gray-700" },
+            input_html: {
+            class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+            } %>
+        </div>
       </div>
-      <div class="card-footer d-flex justify-content-between">
-        <%= link_to "Voltar" , customers_path, class: "btn btn-secondary" %>
-          <%= form.button :button, class: "btn-primary" %>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <%= f.input :mobile_phone, label_html: { class: "block text-sm font-medium text-gray-700" }, input_html: {
+          class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+          } %>
+          <%= f.input :email, label_html: { class: "block text-sm font-medium text-gray-700" }, input_html: {
+            class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+            } %>
+      </div>
+      <div class="flex justify-between pt-4 border-t">
+        <%= link_to "Voltar", customers_path,
+          class: "inline-flex items-center px-4 py-2 bg-gray-200 text-gray-700 text-sm font-medium rounded hover:bg-gray-300"
+          %>
+          <%= f.button :submit,
+            class: "inline-flex items-center px-4 py-2 bg-green-600 text-white text-sm font-medium rounded hover:bg-green-700"
+            %>
       </div>
     <% end %>
   </div>

@@ -1,30 +1,33 @@
-<!DOCTYPE html5>
+<!DOCTYPE html>
 <html lang="pt-BR" id="html-root">
+
   <head>
-    <title><%= content_for(:title) || "Aluguel Equipamentos" %></title>
+    <title>
+      <%= content_for(:title) || "Aluguel Equipamentos" %>
+    </title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= yield :head %>
 
-    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
-    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
-
+    <!-- Ícones -->
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
-    <%= stylesheet_link_tag "application.tailwind", "data-turbo-track": "reload" %>
+    <!-- CSS e JS gerenciados pelo Tailwind + importações do Rails -->
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+  <body class="min-h-screen bg-gray-50 text-gray-900">
+    <!-- Navbar, flash messages, etc. podem entrar aqui -->
+    <%= render 'shared/flash' %>
+    <main class="container mx-auto px-4 py-8">
       <%= yield %>
     </main>
   </body>
+
 </html>
