@@ -1,0 +1,15 @@
+<%= form_with url: available_equipaments_path, method: :get, local: true do |form| %>
+  <div>
+    <%= form.label :period_start, "Data Início" %><br>
+      <%= form.date_field :period_start, value: params[:period_start] %>
+  </div>
+
+  <div>
+    <%= form.label :period_end, "Data Fim" %><br>
+      <%= form.date_field :period_end, value: params[:period_end] %>
+  </div>
+
+  <div>
+    <%= form.submit "Filtrar", class: "bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" %>
+  </div>
+<% end %>
