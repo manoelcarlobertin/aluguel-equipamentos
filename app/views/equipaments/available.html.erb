@@ -1,3 +1,8 @@
+<% if flash.now[:alert] %>
+  <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+    <%= flash.now[:alert] %>
+  </div>
+<% end %>
 <h1>Lista Equipamentos Disponíveis</h1>
 
 <%= render 'filter_form' %>
